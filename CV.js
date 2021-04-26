@@ -70,6 +70,7 @@ const Curriculum = {
     summary: "Description..."
   }],
   skills: [{
+      id:1,
     name: "Web Development",
     level: "Master",
     keywords: [

@@ -4,6 +4,7 @@ const basics = require('./Controllers/basics')
 const work = require('./Controllers/work')
 const volunteer = require('./Controllers/volunteer')
 const education = require('./Controllers/education')
+const skills = require('./Controllers/skills')
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -17,6 +18,7 @@ app.use('/resume', basics)
 app.use('/resume/section', work)
 app.use('/resume/vol', volunteer)
 app.use('/resume/edu', education)
+app.use('/resume/sk', skills)
 
 app.listen(PORT, ()=>{
     console.log('its working')
