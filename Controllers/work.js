@@ -1,3 +1,4 @@
+const { work } = require('../CV');
 const CV = require('../CV');
 const router = require('express').Router();
 
@@ -53,6 +54,27 @@ router.put('/work/edit/:id', (req, res)=>{
     catch(err){
         res.status(404).send("bad request")
     }
+})
+
+// DELETe request
+
+router.delete('/work/delete/:id', (req, res)=>{
+    
+   try{
+       var id = req.params.id
+
+       CV.work.map(x=>{
+           if (x.id==id){
+               work.splice(x,1)
+               res.status(200).send("message deleted")
+           }
+       })
+
+   }
+    catch(err){
+        res.status(400).send("bad request")
+    }
+
 })
 
 module.exports = router
