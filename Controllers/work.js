@@ -28,17 +28,26 @@ router.post('/work/add', (req,res)=>{
 
 // PUT request
 
-router.put('/work/edit', (req, res)=>{
+router.put('/work/edit/:id', (req, res)=>{
     try{
-       
+       var id = req.params.id
     
         var {company, position, website, startDate, endDate,  summary, highlights } = req.body
         var UpdateWork = {company, position, website, startDate, endDate,  summary, highlights }
+        
+        CV.work.map(x=>{
+            if (x.id==id){
+                x.company = UpdateWork.company;
+                x.position = UpdateWork.position;
+                x.website = UpdateWork.website;
+                x.startDate = UpdateWork.startDate;
+                x.endDate = UpdateWork.endDate;
+                x.summary=UpdateWork.summary;
+                x.highlights = UpdateWork.highlights;
+                res.status(200).send('Updated correctly')
+            }
+        })
     
-        if(UpdateWork){
-            CV.basics = UpdateWork;
-            res.status(200).send('Updated correctly')
-        }
 
     }
     catch(err){

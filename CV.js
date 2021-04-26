@@ -21,6 +21,7 @@ const Curriculum = {
     }]
   },
   work: [{
+      id:1,
     company: "Company",
     position: "President",
     website: "http://company.com",
@@ -32,6 +33,7 @@ const Curriculum = {
     ]
   }],
   volunteer: [{
+     
     organization: "Organization",
     position: "Volunteer",
     website: "http://organization.com/",
