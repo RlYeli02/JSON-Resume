@@ -45,6 +45,7 @@ const Curriculum = {
     ]
   }],
   education: [{
+      id:1,
     institution: "University",
     area: "Software Development",
     studyType: "Bachelor",
