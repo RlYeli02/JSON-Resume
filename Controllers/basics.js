@@ -30,4 +30,23 @@ router.post('/basics/add', (req,res)=>{
 
 })
 
+// PUT request
+
+router.put('/basics/:edit', (req, res)=>{
+    try{
+        var fieldToUpdate = req.params.fieldToUpdate
+    
+        var {name, title, email, label, phone,  website, location, profiles } = req.body
+        var UpdateBasics = {name, title, email, label, phone,  website, location, profiles }
+    
+        if(UpdateBasics){
+            CV.basics = UpdateBasics;
+            res.status(200).send('Updated correctly')
+        }
+
+    }
+    catch(err){
+        res.status(404).send("bad request")
+    }
+})
 module.exports= router
