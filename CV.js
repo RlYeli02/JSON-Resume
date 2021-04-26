@@ -33,7 +33,7 @@ const Curriculum = {
     ]
   }],
   volunteer: [{
-     
+    id:1,
     organization: "Organization",
     position: "Volunteer",
     website: "http://organization.com/",

@@ -34,17 +34,17 @@ router.put('/volunteer/edit/:id', (req, res)=>{
        var id = req.params.id
     
         var {organization,  position, website, startDate, endDate,  summary, highlights } = req.body
-        var UpdateWork = {organization, position, website, startDate, endDate,  summary, highlights }
+        var UpdateVolunteer = {organization, position, website, startDate, endDate,  summary, highlights }
         
-        CV.work.map(x=>{
+        CV.volunteer.map(x=>{
             if (x.id==id){
-                x.organization = UpdateWork.organization;
-                x.position = UpdateWork.position;
-                x.website = UpdateWork.website;
-                x.startDate = UpdateWork.startDate;
-                x.endDate = UpdateWork.endDate;
-                x.summary=UpdateWork.summary;
-                x.highlights = UpdateWork.highlights;
+                x.organization = UpdateVolunteer.organization;
+                x.position = UpdateVolunteer.position;
+                x.website = UpdateVolunteer.website;
+                x.startDate = UpdateVolunteer.startDate;
+                x.endDate = UpdateVolunteer.endDate;
+                x.summary=UpdateVolunteer.summary;
+                x.highlights = UpdateVolunteer.highlights;
                 res.status(200).send('Updated correctly')
             }
         })
@@ -63,9 +63,9 @@ router.delete('/volunteer/delete/:id', (req, res)=>{
    try{
        var id = req.params.id
 
-       CV.work.map(x=>{
+       CV.volunteer.map(x=>{
            if (x.id==id){
-               work.splice(x,1)
+               CV.volunteer.splice(x,1)
                res.status(200).send("volunteer deleted")
            }
        })
