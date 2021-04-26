@@ -49,4 +49,18 @@ router.put('/basics/:edit', (req, res)=>{
         res.status(404).send("bad request")
     }
 })
+
+// DELETe request
+
+router.delete('/basics/delete', (req, res)=>{
+    
+   if (CV.basics){
+       delete CV.basics;
+      res.status(200).send("deleted")
+   }
+   res.status(400).send("not found")
+
+
+})
+
 module.exports= router
