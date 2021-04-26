@@ -4,20 +4,20 @@ const router = require('express').Router();
 
 //GET request
 
-router.get('/work', (req, res)=>{
-    res.send(CV.work)
+router.get('/volunteer', (req, res)=>{
+    res.send(CV.volunteer)
 })
 
-router.get ('/work/highlights', (req, res)=>{
-    res.send(CV.work.highlights);
+router.get ('/volunteer/highlights', (req, res)=>{
+    res.send(CV.volunteer.highlights);
 })
 
 //POST request
 
-router.post('/work/add', (req,res)=>{
+router.post('/volunteer/add', (req,res)=>{
     try{
         var newBasicInfo = req.body
-        CV.work.push(newBasicInfo)
+        CV.volunteer.push(newBasicInfo)
         res.status(200).send("Added sucessfully")
     }
     catch(err){
@@ -29,16 +29,16 @@ router.post('/work/add', (req,res)=>{
 
 // PUT request
 
-router.put('/work/edit/:id', (req, res)=>{
+router.put('/volunteer/edit/:id', (req, res)=>{
     try{
        var id = req.params.id
     
-        var {company, position, website, startDate, endDate,  summary, highlights } = req.body
-        var UpdateWork = {company, position, website, startDate, endDate,  summary, highlights }
+        var {organization,  position, website, startDate, endDate,  summary, highlights } = req.body
+        var UpdateWork = {organization, position, website, startDate, endDate,  summary, highlights }
         
         CV.work.map(x=>{
             if (x.id==id){
-                x.company = UpdateWork.company;
+                x.organization = UpdateWork.organization;
                 x.position = UpdateWork.position;
                 x.website = UpdateWork.website;
                 x.startDate = UpdateWork.startDate;
@@ -58,7 +58,7 @@ router.put('/work/edit/:id', (req, res)=>{
 
 // DELETe request
 
-router.delete('/work/delete/:id', (req, res)=>{
+router.delete('/volunteer/delete/:id', (req, res)=>{
     
    try{
        var id = req.params.id
@@ -66,7 +66,7 @@ router.delete('/work/delete/:id', (req, res)=>{
        CV.work.map(x=>{
            if (x.id==id){
                work.splice(x,1)
-               res.status(200).send("work deleted")
+               res.status(200).send("volunteer deleted")
            }
        })
 
