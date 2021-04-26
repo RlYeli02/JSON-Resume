@@ -91,3 +91,5 @@ const Curriculum = {
     reference: "Reference..."
   }]
 }
+
+module.exports = Curriculum;
