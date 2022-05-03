@@ -3,24 +3,24 @@ const CV = require('../CV');
 const router = require('express').Router();
 
 //GET request
-
-router.get('/education', (req, res)=>{
-    res.send(CV.education)
+const { education } = CV;
+router.get('/education', (req, res) => {
+    res.send(education)
 })
 
-router.get ('/education/courses', (req, res)=>{
-    res.send(CV.education.courses);
+router.get('/education/courses', (req, res) => {
+    res.send(education.courses);
 })
 
 //POST request
 
-router.post('/education/add', (req,res)=>{
-    try{
+router.post('/education/add', (req, res) => {
+    try {
         var newBasicInfo = req.body
-        CV.education.push(newBasicInfo)
+        education.push(newBasicInfo)
         res.status(200).send("Added sucessfully")
     }
-    catch(err){
+    catch (err) {
         res.status(400).send("bad request")
 
     }
@@ -29,49 +29,49 @@ router.post('/education/add', (req,res)=>{
 
 // PUT request
 
-router.put('/education/edit/:id', (req, res)=>{
-    try{
-       var id = req.params.id
-    
-        var {institution,  area, studyType, startDate, endDate,  gpa, courses } = req.body
-        var UpdateVolunteer = {institution,  area, studyType, startDate, endDate,  gpa, courses  }
-        
-        CV.education.map(x=>{
-            if (x.id==id){
-                x.institution = UpdateVolunteer.institution;
-                x.area = UpdateVolunteer.area;
-                x.studyType = UpdateVolunteer.studyType;
-                x.startDate = UpdateVolunteer.startDate;
-                x.endDate = UpdateVolunteer.endDate;
-                x.gpa=UpdateVolunteer.gpa;
-                x.courses = UpdateVolunteer.courses;
+router.put('/education/edit/:id', (req, res) => {
+    try {
+        var id = req.params.id
+
+        var { institution, area, studyType, startDate, endDate, gpa, courses } = req.body
+
+
+        education.map(education => {
+            if (education.id == id) {
+                education.institution = institution;
+                education.area = area;
+                education.studyType = studyType;
+                education.startDate = startDate;
+                education.endDate = endDate;
+                education.gpa = gpa;
+                education.courses = courses;
                 res.status(200).send('Updated correctly')
             }
         })
-    
+
 
     }
-    catch(err){
+    catch (err) {
         res.status(404).send("bad request")
     }
 })
 
 // DELETe request
 
-router.delete('/education/delete/:id', (req, res)=>{
-    
-   try{
-       var id = req.params.id
+router.delete('/education/delete/:id', (req, res) => {
 
-       CV.education.map(x=>{
-           if (x.id==id){
-               CV.education.splice(x,1)
-               res.status(200).send("education deleted")
-           }
-       })
+    try {
+        var id = req.params.id
 
-   }
-    catch(err){
+        education.map(education => {
+            if (education.id == id) {
+                education.splice(x, 1)
+                res.status(200).send("education deleted")
+            }
+        })
+
+    }
+    catch (err) {
         res.status(400).send("bad request")
     }
 

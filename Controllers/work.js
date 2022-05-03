@@ -1,26 +1,27 @@
-const { work } = require('../CV');
+
 const CV = require('../CV');
 const router = require('express').Router();
 
 //GET request
+const { work } = CV;
 
-router.get('/work', (req, res)=>{
-    res.send(CV.work)
+router.get('/work', (req, res) => {
+    res.send(work)
 })
 
-router.get ('/work/highlights', (req, res)=>{
-    res.send(CV.work.highlights);
+router.get('/work/highlights', (req, res) => {
+    res.send(work.highlights);
 })
 
 //POST request
 
-router.post('/work/add', (req,res)=>{
-    try{
+router.post('/work/add', (req, res) => {
+    try {
         var newBasicInfo = req.body
-        CV.work.push(newBasicInfo)
+        work.push(newBasicInfo)
         res.status(200).send("Added sucessfully")
     }
-    catch(err){
+    catch (err) {
         res.status(400).send("bad request")
 
     }
@@ -29,49 +30,49 @@ router.post('/work/add', (req,res)=>{
 
 // PUT request
 
-router.put('/work/edit/:id', (req, res)=>{
-    try{
-       var id = req.params.id
-    
-        var {company, position, website, startDate, endDate,  summary, highlights } = req.body
-        var UpdateWork = {company, position, website, startDate, endDate,  summary, highlights }
-        
-        CV.work.map(x=>{
-            if (x.id==id){
-                x.company = UpdateWork.company;
-                x.position = UpdateWork.position;
-                x.website = UpdateWork.website;
-                x.startDate = UpdateWork.startDate;
-                x.endDate = UpdateWork.endDate;
-                x.summary=UpdateWork.summary;
-                x.highlights = UpdateWork.highlights;
+router.put('/work/edit/:id', (req, res) => {
+    try {
+        var id = req.params.id
+
+        var { company, position, website, startDate, endDate, summary, highlights } = req.body
+
+
+        work.map(work => {
+            if (work.id == id) {
+                work.company = company;
+                work.position = position;
+                work.website = website;
+                work.startDate = startDate;
+                work.endDate = endDate;
+                work.summary = summary;
+                work.highlights = highlights;
                 res.status(200).send('Updated correctly')
             }
         })
-    
+
 
     }
-    catch(err){
+    catch (err) {
         res.status(404).send("bad request")
     }
 })
 
 // DELETe request
 
-router.delete('/work/delete/:id', (req, res)=>{
-    
-   try{
-       var id = req.params.id
+router.delete('/work/delete/:id', (req, res) => {
 
-       CV.work.map(x=>{
-           if (x.id==id){
-               work.splice(x,1)
-               res.status(200).send("work deleted")
-           }
-       })
+    try {
+        var id = req.params.id
 
-   }
-    catch(err){
+        work.map(work => {
+            if (work.id == id) {
+                work.splice(x, 1)
+                res.status(200).send("work deleted")
+            }
+        })
+
+    }
+    catch (err) {
         res.status(400).send("bad request")
     }
 

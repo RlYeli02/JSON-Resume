@@ -7,10 +7,10 @@ const education = require('./Controllers/education')
 const skills = require('./Controllers/skills')
 
 app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }))
 
 
-const PORT =  process.env.args || 4000;
+const PORT = process.env.args || 4000;
 
 //ROUTE
 
@@ -20,6 +20,6 @@ app.use('/resume/vol', volunteer)
 app.use('/resume/edu', education)
 app.use('/resume/sk', skills)
 
-app.listen(PORT, ()=>{
+app.listen(5000, () => {
     console.log('its working')
 })
